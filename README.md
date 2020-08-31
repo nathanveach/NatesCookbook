@@ -1,24 +1,9 @@
-# README
+image upload added to new recipe form
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+devise or something to authenticate me
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+add edit/update feature for recipes
+	-keep same old values in form inputs somehow
+	-be able to submit
+*** I think i need to add a componentdidmount shit for update/edit work on dat yo!!!
+- also use defaultValue for filled in values

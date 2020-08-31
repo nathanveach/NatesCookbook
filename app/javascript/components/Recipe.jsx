@@ -9,6 +9,7 @@ class Recipe extends React.Component {
 		this.addHtmlEntities = this.addHtmlEntities.bind(this);
 
 		this.deleteRecipe = this.deleteRecipe.bind(this);
+
 	}
 
 	componentDidMount() {
@@ -63,6 +64,7 @@ class Recipe extends React.Component {
       .catch(error => console.log(error.message));
 	}
 
+
 	render() {
 		const { recipe } = this.state;
 		let ingredientList = "No ingredients available";
@@ -108,14 +110,18 @@ class Recipe extends React.Component {
 							/>
 						</div>
 						<div className="col-sm-12 col-lg-2">
-							<button type="button" className="btn btn-danger" onClick={this.deleteRecipe} >
+							<button type="button" className="btn btn-danger" data-confirm="Are you sure you want to delete this recipe foo?" onClick={this.deleteRecipe}>
 								Delete Recipe
 							</button>
 						</div>
 					</div>
 					<Link to="/recipes" className="btn btn-link">
 						Back to recipes
+					</Link> | 
+					<Link to={`/update/${recipe.id}`} className="btn btn-link">
+						Edit Recipe
 					</Link>
+
 				</div>
 			</div>
 		);
