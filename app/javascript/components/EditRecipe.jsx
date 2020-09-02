@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 class EditRecipe extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { recipe: { ingredients: "" } };
+    this.state = { recipe: {
+      name: "",
+      ingredients: "",
+      instructions: ""
+    }};
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -39,22 +43,22 @@ class EditRecipe extends React.Component {
 
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
+    console.log(event.target.value)
   }
 
   onSubmit(event) {
-    console.log(this.state.recipe.name)
     event.preventDefault();
     const url = `/api/v1/update/${this.state.recipe.id}`;
-    const { name, ingredients, instructions } = this.state.recipe;
+    const { name, ingredients, instructions } = this.state;
 
-    if (name.length == 0 || ingredients.length == 0 || instructions.length == 0)
+    if (name == undefined && ingredients == undefined && instructions == undefined)
       return;
-
+    
     const body = {
       name,
       ingredients,
-      instructions: instructions.replace(/\n/g, "<br> <br>")
-    };
+      instructions: instructions//.replace(/\n/g, "<br> <br>") - figure out how to include this code!!
+    };  
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
     fetch(url, {

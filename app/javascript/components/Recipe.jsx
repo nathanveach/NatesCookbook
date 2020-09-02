@@ -39,7 +39,7 @@ class Recipe extends React.Component {
 	}
 
 	deleteRecipe() {
-	    const {
+	  const {
       match: {
         params: { id }
       }
