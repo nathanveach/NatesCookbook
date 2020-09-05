@@ -53,11 +53,11 @@ class EditRecipe extends React.Component {
 
     if (name == undefined && ingredients == undefined && instructions == undefined)
       return;
-    
+   
     const body = {
       name,
       ingredients,
-      instructions: instructions//.replace(/\n/g, "<br> <br>") - figure out how to include this code!!
+      instructions: (instructions == undefined ? instructions : instructions.replace(/\n/g, "<br> <br>"))
     };  
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -123,7 +123,7 @@ class EditRecipe extends React.Component {
                 rows="5"
                 required
                 onChange={this.onChange}
-                  defaultValue={this.state.recipe.instructions}
+                defaultValue={this.state.recipe.instructions}
               />
               <button type="submit" className="btn custom-button mt-3">
                 Update Recipe
