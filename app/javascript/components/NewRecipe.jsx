@@ -8,7 +8,7 @@ class NewRecipe extends React.Component {
 			name: "",
 			ingredients: "",
 			instructions: "",
-      image: null
+      image: ""
 		};
 
     this.onChange = this.onChange.bind(this);

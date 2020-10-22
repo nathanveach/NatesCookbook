@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 2020_09_05_200318) do
     t.string "name", null: false
     t.text "ingredients", null: false
     t.text "instructions", null: false
-    t.string "picture"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 class Recipe extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { recipe: { ingredients: "" } };
+		this.state = { recipe: { image: "", ingredients: "" } };
 
 		this.addHtmlEntities = this.addHtmlEntities.bind(this);
 
@@ -79,12 +79,12 @@ class Recipe extends React.Component {
 				));
 		}
 		const recipeInstructions = this.addHtmlEntities(recipe.instructions);
-		console.log(recipe)
+		console.log(this.image)
 		return (
 			<div className="">
 				<div className="hero position-relative d-flex align-items-center justify-content-center">
 					<img 
-						src={recipe.image}
+						src={recipe.image.url}
 						alt={`${recipe.name} image`}
 						className="img-fluid position-absolute"
 					/>

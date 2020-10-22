@@ -9,5 +9,7 @@ Rails.application.routes.draw do
     end
   end
   root 'homepage#index'
-  get '/*path', to: 'homepage#index'
+  get '/*path', to: 'homepage#index', constraints: lambda { |req|
+    req.path.exclude? 'rails/active_storage'
+  }
 end
