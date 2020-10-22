@@ -4,7 +4,7 @@ class CreateRecipes < ActiveRecord::Migration[6.0]
       t.string :name, null: false
       t.text :ingredients, null: false
       t.text :instructions, null: false
-      t.string :image, default: 'https://believebamboo.s3-us-west-1.amazonaws.com/foodbg.jpg'
+      t.string :picture
 
       t.timestamps
     end

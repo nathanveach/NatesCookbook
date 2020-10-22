@@ -79,7 +79,7 @@ class Recipe extends React.Component {
 				));
 		}
 		const recipeInstructions = this.addHtmlEntities(recipe.instructions);
-
+		console.log(recipe)
 		return (
 			<div className="">
 				<div className="hero position-relative d-flex align-items-center justify-content-center">
@@ -120,7 +120,7 @@ class Recipe extends React.Component {
 					</Link> | 
 					<Link to={`/update/${recipe.id}`} className="btn btn-link">
 						Edit Recipe
-					</Link>
+					</Link> 
 
 				</div>
 			</div>

@@ -6,6 +6,9 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.action_mailer.default_url_options = { host: 'localhost:3000' } 
+  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+  
   config.cache_classes = false
   config.action_view.cache_template_loading = true
 

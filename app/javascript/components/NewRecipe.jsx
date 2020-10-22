@@ -7,13 +7,17 @@ class NewRecipe extends React.Component {
 		this.state = {
 			name: "",
 			ingredients: "",
-			instructions: ""
+			instructions: "",
+      image: null
 		};
 
-		this.onChange = this.onChange.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onUpload = this.onUpload.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 		this.stripHtmlEntities = this.stripHtmlEntities.bind(this);
+
 	}
+
 
 	stripHtmlEntities(str) {
 		return String(str)
@@ -22,31 +26,45 @@ class NewRecipe extends React.Component {
 	}
 
 	onChange(event) {
+    console.log(event.target.name)
 		this.setState({ [event.target.name]: event.target.value });
 	}
+
+  onUpload(event) {
+    console.log(event.target.name)
+    this.setState ({ image: event.target.files[0] });
+  }
 
 	onSubmit(event) {
 		event.preventDefault();
 		const url = "/api/v1/recipes/create";
-		const { name, ingredients, instructions } = this.state;
-
+		const { name, ingredients, instructions, image } = this.state;
+    
 		if (name.length == 0 || ingredients.length == 0 || instructions.length == 0)
 			return;
 
-		const body = {
-			name,
-			ingredients,
-			instructions: instructions.replace(/\n/g, "<br> <br>")
-		};
+		// const body = {
+		// 	name,
+		// 	ingredients,
+		// 	instructions: instructions.replace(/\n/g, "<br> <br>"),
+  //     image
+		// };
+
+    const formData = new FormData();
+      formData.append('recipe[name]', name)
+      formData.append('recipe[ingredients]', ingredients)
+      formData.append('recipe[instructions]', instructions)
+      formData.append('recipe[image]', image)
+
+    console.log(formData)
 
 		const token = document.querySelector('meta[name="csrf-token"]').content;
 		fetch(url, {
 			method: "POST",
 			headers: {
-				"X-CSRF-Token": token,
-				"Content-Type": "application/json"
+				"X-CSRF-Token": token
 			},
-			body: JSON.stringify(body)
+			body: formData
 		})
 			.then(response => {
 				if (response.ok) {
@@ -77,6 +95,17 @@ class NewRecipe extends React.Component {
                   className="form-control"
                   required
                   onChange={this.onChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="recipeImage">Recipe image</label>
+                <input
+                  type="file"
+                  name="image"
+                  id="recipeImage"
+                  className="form-control"
+                  required
+                  onChange={this.onUpload}
                 />
               </div>
               <div className="form-group">
