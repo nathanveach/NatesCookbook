@@ -4,10 +4,14 @@ import { Link } from "react-router-dom";
 class Recipe extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { recipe: { image: "", ingredients: "" } };
+    this.state = { recipe: {
+      name: "",
+      ingredients: "",
+      instructions: "",
+      image: ""
+    }};
 
 		this.addHtmlEntities = this.addHtmlEntities.bind(this);
-
 		this.deleteRecipe = this.deleteRecipe.bind(this);
 
 	}
@@ -79,7 +83,7 @@ class Recipe extends React.Component {
 				));
 		}
 		const recipeInstructions = this.addHtmlEntities(recipe.instructions);
-		console.log(this.image)
+		
 		return (
 			<div className="">
 				<div className="hero position-relative d-flex align-items-center justify-content-center">

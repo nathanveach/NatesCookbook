@@ -1,7 +1,14 @@
-image upload added to new recipe form** use event.target.files[0]
+figure out how to correctly hide s3 keys from storage.yml before pushing to github!****
 
-since i cant figure out how to upload images along with string inputs from form make new component
-with image uploader? **I made image uploader component but how do i get to it lolzzzzz
+still need to update editrecipe.jsx with proper onchange handler n FormData n shit
+make spaces work for recipe.instructions 
 
-devise or something to authenticate me
+
+
+make s3 bucket private again
+
+push to heroku bootstrap not reading for some reason ? __ ?
+
+
+devise or something to authenticate me  
 

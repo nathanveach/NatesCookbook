@@ -26,12 +26,10 @@ class NewRecipe extends React.Component {
 	}
 
 	onChange(event) {
-    console.log(event.target.name)
 		this.setState({ [event.target.name]: event.target.value });
 	}
 
   onUpload(event) {
-    console.log(event.target.name)
     this.setState ({ image: event.target.files[0] });
   }
 
@@ -53,10 +51,9 @@ class NewRecipe extends React.Component {
     const formData = new FormData();
       formData.append('recipe[name]', name)
       formData.append('recipe[ingredients]', ingredients)
-      formData.append('recipe[instructions]', instructions)
+      formData.append('recipe[instructions]', instructions.replace(/\n/g, "<br> <br>"))
       formData.append('recipe[image]', image)
 
-    console.log(formData)
 
 		const token = document.querySelector('meta[name="csrf-token"]').content;
 		fetch(url, {

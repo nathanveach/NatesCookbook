@@ -7,12 +7,13 @@ class EditRecipe extends React.Component {
     this.state = { recipe: {
       name: "",
       ingredients: "",
-      instructions: ""
+      instructions: "",
+      image: ""
     }};
 
     this.onChange = this.onChange.bind(this);
+    this.onUpload = this.onUpload.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.stripHtmlEntities = this.stripHtmlEntities.bind(this);
   }
 
   componentDidMount() {
@@ -35,39 +36,36 @@ class EditRecipe extends React.Component {
       .catch(() => this.props.history.push("/recipes"));
   }
 
-  stripHtmlEntities(str) {
-    return String(str)
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;");
-  }
-
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
-    console.log(event.target.value)
+  }
+
+  onUpload(event) {
+    this.setState ({ image: event.target.files[0] });
   }
 
   onSubmit(event) {
     event.preventDefault();
     const url = `/api/v1/update/${this.state.recipe.id}`;
-    const { name, ingredients, instructions } = this.state;
+    const { name, ingredients, instructions, image } = this.state;
 
-    if (name == undefined && ingredients == undefined && instructions == undefined)
-      return;
-   
-    const body = {
-      name,
-      ingredients,
-      instructions: (instructions == undefined ? instructions : instructions.replace(/\n/g, "<br> <br>"))
-    };  
+    const formData = new FormData();
+      formData.append('recipe[image]', image)
+      // values will be undefined if onchange doesn't fire
+      if (name != undefined)    
+        formData.append('recipe[name]', name)
+      if (ingredients != undefined)    
+        formData.append('recipe[ingredients]', ingredients)
+      if (instructions != undefined)        
+        formData.append('recipe[instructions]', instructions.replace(/\n/g, "<br> <br>"))
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
     fetch(url, {
       method: "PATCH",
       headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
+        "X-CSRF-Token": token
       },
-      body: JSON.stringify(body)
+      body: formData
     })
       .then(response => {
         if (response.ok) {
@@ -80,6 +78,10 @@ class EditRecipe extends React.Component {
   }
 
   render() {
+
+    const { recipe } = this.state;
+    const recipeInstructions = recipe.instructions.replace(new RegExp("<br>", "g"), '')
+
     return (
       <div className="container mt-5">
         <div className="row">
@@ -97,7 +99,18 @@ class EditRecipe extends React.Component {
                   className="form-control"
                   required
                   onChange={this.onChange}
-                  defaultValue={this.state.recipe.name}
+                  defaultValue={recipe.name}
+                />
+              </div>              
+              <div className="form-group">
+                <label htmlFor="recipeImage">Recipe image</label>
+                <input
+                  type="file"
+                  name="image"
+                  id="recipeImage"
+                  className="form-control"
+                  required
+                  onChange={this.onUpload}
                 />
               </div>
               <div className="form-group">
@@ -109,7 +122,7 @@ class EditRecipe extends React.Component {
                   className="form-control"
                   required
                   onChange={this.onChange}
-                  defaultValue={this.state.recipe.ingredients}
+                  defaultValue={recipe.ingredients}
                 />
                 <small id="ingredientsHelp" className="form-text text-muted">
                   Separate each ingredient with a comma.
@@ -123,7 +136,7 @@ class EditRecipe extends React.Component {
                 rows="5"
                 required
                 onChange={this.onChange}
-                defaultValue={this.state.recipe.instructions}
+                defaultValue={recipeInstructions}
               />
               <button type="submit" className="btn custom-button mt-3">
                 Update Recipe
