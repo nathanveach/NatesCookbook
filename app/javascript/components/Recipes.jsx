@@ -51,9 +51,10 @@ class Recipes extends React.Component {
 
     return (
       <>
-        <section className="jumbotron jumbotron-fluid text-center jumbotron-img">
-          <div className="container py-5">
-            <h1 className="display-1"></h1>
+        <section className="jumbotron jumbotron-fluid jumbotron-img img-fluid">
+          <div className="container-fluid pt-5 mt-5">
+            <h1 className="display-4 text-white ml-2">Nate's Cookbook.</h1>
+            <br/><br/>
           </div>
         </section>
         <div className="py-5">
