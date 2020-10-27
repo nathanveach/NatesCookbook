@@ -93,7 +93,7 @@ class Recipe extends React.Component {
 						className="img-fluid position-absolute"
 					/>
 					<div className="overlay bg-dark position-absolute" />
-					<h1 className="display-4 position-relative text-white">
+					<h1 className="display-4 position-relative text-white mb-5 pb-5 mx-2">
 						{recipe.name}
 					</h1>
 				</div>
@@ -101,12 +101,12 @@ class Recipe extends React.Component {
 					<div className="row">
 						<div className="col-sm-12 col-lg-3">
 							<ul className="list-group">
-								<h5 className="mb-2">Ingredients</h5>
+								<h5 className="my-4">Ingredients</h5>
 								{ingredientList}
 							</ul>
 						</div>
 						<div className="col-sm-12 col-lg-7">
-							<h5 className="mb-2">Preparation Instructions</h5>
+							<h5 className="my-4">Preparation Instructions</h5>
 							<div
 								dangerouslySetInnerHTML={{
 									__html: `${recipeInstructions}`
@@ -114,18 +114,19 @@ class Recipe extends React.Component {
 							/>
 						</div>
 						<div className="col-sm-12 col-lg-2">
-							<button type="button" className="btn btn-danger" data-confirm="Are you sure you want to delete this recipe foo?" onClick={this.deleteRecipe}>
+							<button type="button" className="btn btn-danger btn-block my-4" data-confirm="Are you sure you want to delete this recipe foo?" onClick={this.deleteRecipe}>
 								Delete Recipe
 							</button>
 						</div>
 					</div>
-					<Link to="/recipes" className="btn btn-link">
-						Back to recipes
-					</Link> | 
-					<Link to={`/update/${recipe.id}`} className="btn btn-link">
-						Edit Recipe
-					</Link> 
-
+					<div className="text-center mt-5">
+						<Link to="/recipes" className="btn btn-link">
+							Back to recipes
+						</Link> | 
+						<Link to={`/update/${recipe.id}`} className="btn btn-link">
+							Edit Recipe
+						</Link> 
+					</div>
 				</div>
 			</div>
 		);

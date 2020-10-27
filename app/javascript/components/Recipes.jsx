@@ -34,7 +34,7 @@ class Recipes extends React.Component {
             alt={`${recipe.name} image`}
           />
           <div className="card-body">
-            <h5 className="card-title text-center">{recipe.name}</h5>
+            <h3 className="card-title text-center">{recipe.name}</h3>
             <Link to={`/recipe/${recipe.id}`} className="stretched-link"></Link>
           </div>
         </div>
