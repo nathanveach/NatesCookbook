@@ -80,7 +80,7 @@ class NewRecipe extends React.Component {
         <div className="row">
           <div className="col-sm-12 col-lg-6 offset-lg-3">
             <h1 className="font-weight-normal mb-5">
-              Add a new recipe to our awesome recipe collection.
+              Make sure you're logged in before creating a recipe!
             </h1>
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
