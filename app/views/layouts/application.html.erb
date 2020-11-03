@@ -4,18 +4,16 @@
     <title>NatesCookbook</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <% if Rails.env.development? %>
-      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <% else %>
+
+    <% if Rails.env.production? %>
       <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <% end %>
+    
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, intial-scale=1, shrink-to-fit=no">
     <%= javascript_pack_tag 'index' %>
 
-    <!-- BOOTSTRAP -->
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.5.3/js/bootstrap.min.js"> </script>
   </head>
 
   <body>
