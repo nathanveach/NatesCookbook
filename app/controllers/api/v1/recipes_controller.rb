@@ -1,4 +1,7 @@
 class Api::V1::RecipesController < ApplicationController
+
+  before_action :authenticate_admin!, only: [:create, :update, :destroy]
+    
   def index
   	recipe = Recipe.all.with_attached_image.order(created_at: :desc)
   	

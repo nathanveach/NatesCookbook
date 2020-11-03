@@ -57,7 +57,8 @@ class Recipes extends React.Component {
             <br/><br/>
           </div>
         </section>
-        <div className="py-5">
+              <a href="/admins/sign_in" className="btn btn-link">Log In</a>
+        <div>
           <main className="container">
             <div className="text-right mb-3">
               <Link to="/recipe" className="btn custom-button">

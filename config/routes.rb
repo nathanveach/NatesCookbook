@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  devise_for :admins, skip: [:registrations]
   namespace :api do
     namespace :v1 do
       get 'recipes/index'
