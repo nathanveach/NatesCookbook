@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Search from "./Search";
 
 class Recipes extends React.Component {
 	constructor(props) {
@@ -57,13 +58,15 @@ class Recipes extends React.Component {
             <br/><br/>
           </div>
         </section>
-              <a href="/admins/sign_in" className="btn btn-link">Log In</a>
+        <Search/>
         <div>
           <main className="container">
             <div className="text-right mb-3">
-              <Link to="/recipe" className="btn custom-button">
+              <Link to="/recipe" className="btn custom-button mt-3">
                 Create New Recipe
               </Link>
+              <br/>              
+              <a href="/admins/sign_in" className="btn btn-link">Log In</a>
             </div>
             <div className="row">
               {recipes.length > 0 ? allRecipes : noRecipe}

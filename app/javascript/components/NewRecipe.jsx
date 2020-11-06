@@ -45,7 +45,7 @@ class NewRecipe extends React.Component {
 		// 	name,
 		// 	ingredients,
 		// 	instructions: instructions.replace(/\n/g, "<br> <br>"),
-  //     image
+    //  image
 		// };
 
     const formData = new FormData();
