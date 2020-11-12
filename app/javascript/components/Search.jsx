@@ -52,8 +52,8 @@ class Search extends React.Component {
 	  	let autoCompleteList = this.state.autoCompleteResults.map((response, index) => {
 			if (!this.state.collapsed) {
 	  		return <ul key={index} className="list-group mt-2">
-	  			<li className="list-group-item">
-	  				<Link to={`/recipe/${response.id}`} className="no-deco">
+	  			<li className="list-group-item list-group-item-custom">
+	  				<Link to={`/recipe/${response.id}`}>
 	  					{response.name}
 	  				</Link>
 	  			</li>

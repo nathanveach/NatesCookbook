@@ -5,6 +5,7 @@ search form:
 
 clean up and change bootstrap css
 
+prob gonna need to sort the recipes alphabetically at some point
 
 multiple images per recipe might be nice* - serializer will b hard part master the serializer think like enginner --actually not important LOL
 
