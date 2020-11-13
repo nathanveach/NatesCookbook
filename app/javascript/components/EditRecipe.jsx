@@ -80,7 +80,7 @@ class EditRecipe extends React.Component {
   render() {
 
     const { recipe } = this.state;
-    const recipeInstructions = recipe.instructions.replace(new RegExp("<br>", "g"), '')
+    const recipeInstructions = recipe.instructions.replace(new RegExp("<br>", "g"), " / ")
 
     return (
       <div className="container mt-5">
