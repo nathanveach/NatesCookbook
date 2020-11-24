@@ -1,3 +1,5 @@
+Nate's Cookbook 🍳
+
 https://nates-cookbook.herokuapp.com/
 
 Rails 6.0 project with React front-end integrated through webpacker.
