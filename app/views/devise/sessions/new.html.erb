@@ -23,9 +23,10 @@
                 <%= f.label :remember_me %>
               </div>
             <% end %>
-
-            <div class="form-group">
-              <%= f.submit "Log in", class: 'btn btn-primary btn-lg' %>
+            <div class="text-center">
+              <div class="form-group d-inline">
+                <%= f.submit "Log in", class: 'btn btn-primary login-btn' %>  <%= link_to " Back to Recipes", root_path, class: 'btn btn-link ml-2' %>
+              </div>
             </div>
           <% end %>
 
