@@ -12,4 +12,4 @@ Fetch API used to handle HTTP communications between React and Rails.
 
 Use of Devise gem to Authenticate Admin priviliges. (Create/Update/Delete)
 
-Actually good recipes ;).
+Actually good recipes ;)!
