@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 class EditRecipe extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { recipe: {
-      name: "",
-      ingredients: "",
-      instructions: "",
-      image: ""
-    }};
+    this.state = {
+      recipe: {
+        name: "",
+        ingredients: "",
+        instructions: "",
+        image: "",
+      },
+    };
 
     this.onChange = this.onChange.bind(this);
     this.onUpload = this.onUpload.bind(this);
@@ -19,20 +21,20 @@ class EditRecipe extends React.Component {
   componentDidMount() {
     const {
       match: {
-        params: { id }
-      }
+        params: { id },
+      },
     } = this.props;
 
     const url = `/api/v1/show/${id}`;
 
     fetch(url)
-      .then(response => {
-        if(response.ok) {
+      .then((response) => {
+        if (response.ok) {
           return response.json();
         }
         throw new Error("Network response was not ok.");
       })
-      .then(response => this.setState({ recipe: response }))
+      .then((response) => this.setState({ recipe: response }))
       .catch(() => this.props.history.push("/recipes"));
   }
 
@@ -41,7 +43,7 @@ class EditRecipe extends React.Component {
   }
 
   onUpload(event) {
-    this.setState ({ image: event.target.files[0] });
+    this.setState({ image: event.target.files[0] });
   }
 
   onSubmit(event) {
@@ -50,37 +52,41 @@ class EditRecipe extends React.Component {
     const { name, ingredients, instructions, image } = this.state;
 
     const formData = new FormData();
-      formData.append('recipe[image]', image)
-      // values will be undefined if onchange doesn't fire
-      if (name != undefined)    
-        formData.append('recipe[name]', name)
-      if (ingredients != undefined)    
-        formData.append('recipe[ingredients]', ingredients)
-      if (instructions != undefined)        
-        formData.append('recipe[instructions]', instructions.replace(/\n/g, "<br> <br>"))
+    formData.append("recipe[image]", image);
+    // values will be undefined if onchange doesn't fire
+    if (name != undefined) formData.append("recipe[name]", name);
+    if (ingredients != undefined)
+      formData.append("recipe[ingredients]", ingredients);
+    if (instructions != undefined)
+      formData.append(
+        "recipe[instructions]",
+        instructions.replace(/\n/g, "<br> <br>")
+      );
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
     fetch(url, {
       method: "PATCH",
       headers: {
-        "X-CSRF-Token": token
+        "X-CSRF-Token": token,
       },
-      body: formData
+      body: formData,
     })
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
           return response.json();
         }
         throw new Error("Network response was not ok.");
       })
-      .then(response => this.props.history.push(`/recipe/${response.id}`))
-      .catch(error => console.log(error.message));
+      .then((response) => this.props.history.push(`/recipe/${response.id}`))
+      .catch((error) => console.log(error.message));
   }
 
   render() {
-
     const { recipe } = this.state;
-    const recipeInstructions = recipe.instructions.replace(new RegExp("<br>", "g"), " / ")
+    const recipeInstructions = recipe.instructions.replace(
+      new RegExp("<br>", "g"),
+      " / "
+    );
 
     return (
       <div className="container mt-5">
@@ -101,7 +107,7 @@ class EditRecipe extends React.Component {
                   onChange={this.onChange}
                   defaultValue={recipe.name}
                 />
-              </div>              
+              </div>
               <div className="form-group">
                 <label htmlFor="recipeImage">Recipe image</label>
                 <input
@@ -151,6 +157,5 @@ class EditRecipe extends React.Component {
     );
   }
 }
-
 
 export default EditRecipe;

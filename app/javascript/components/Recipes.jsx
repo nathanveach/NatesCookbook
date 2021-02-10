@@ -3,25 +3,24 @@ import { Link } from "react-router-dom";
 import Search from "./Search";
 
 class Recipes extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			recipes: []
-		};
-	}
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      recipes: [],
+    };
+  }
 
   componentDidMount() {
-      const url = "/api/v1/recipes/index";
-      fetch(url)
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw new Error("Network response was not ok.");
-        })
-        .then(response => this.setState({ recipes: response }))
-        .catch(() => this.props.history.push("/"));
+    const url = "/api/v1/recipes/index";
+    fetch(url)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => this.setState({ recipes: response }))
+      .catch(() => this.props.history.push("/"));
   }
 
   render() {
@@ -41,7 +40,7 @@ class Recipes extends React.Component {
         </div>
       </div>
     ));
-    
+
     const noRecipe = (
       <div className="vw-100 vh-50 d-flex align-items-center justify-content-center">
         <h4>
@@ -55,18 +54,21 @@ class Recipes extends React.Component {
         <section className="jumbotron jumbotron-fluid jumbotron-img img-fluid">
           <div className="container-fluid pt-5 mt-5">
             <h1 className="display-4 text-white ml-2">Nate's Cookbook.</h1>
-            <br/><br/>
+            <br />
+            <br />
           </div>
         </section>
-        <Search/>
+        <Search />
         <div>
           <main className="container">
             <div className="text-right mb-3">
               <Link to="/recipe" className="btn custom-button mt-3">
                 Create New Recipe
               </Link>
-              <br/>              
-              <a href="/admins/sign_in" className="btn btn-link">Log In</a>
+              <br />
+              <a href="/admins/sign_in" className="btn btn-link">
+                Log In
+              </a>
             </div>
             <div className="row">
               {recipes.length > 0 ? allRecipes : noRecipe}
@@ -75,7 +77,7 @@ class Recipes extends React.Component {
         </div>
       </>
     );
-  }	  
+  }
 }
 
 export default Recipes;

@@ -2,77 +2,74 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 class NewRecipe extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			name: "",
-			ingredients: "",
-			instructions: "",
-      image: ""
-		};
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      ingredients: "",
+      instructions: "",
+      image: "",
+    };
 
     this.onChange = this.onChange.bind(this);
     this.onUpload = this.onUpload.bind(this);
-		this.onSubmit = this.onSubmit.bind(this);
-		this.stripHtmlEntities = this.stripHtmlEntities.bind(this);
-
-	}
-
-
-	stripHtmlEntities(str) {
-		return String(str)
-			.replace(/</g, "&lt;")
-			.replace(/>/g, "&gt;");
-	}
-
-	onChange(event) {
-		this.setState({ [event.target.name]: event.target.value });
-	}
-
-  onUpload(event) {
-    this.setState ({ image: event.target.files[0] });
+    this.onSubmit = this.onSubmit.bind(this);
+    this.stripHtmlEntities = this.stripHtmlEntities.bind(this);
   }
 
-	onSubmit(event) {
-		event.preventDefault();
-		const url = "/api/v1/recipes/create";
-		const { name, ingredients, instructions, image } = this.state;
-    
-		if (name.length == 0 || ingredients.length == 0 || instructions.length == 0)
-			return;
+  stripHtmlEntities(str) {
+    return String(str).replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
 
-		// const body = {
-		// 	name,
-		// 	ingredients,
-		// 	instructions: instructions.replace(/\n/g, "<br> <br>"),
+  onChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  onUpload(event) {
+    this.setState({ image: event.target.files[0] });
+  }
+
+  onSubmit(event) {
+    event.preventDefault();
+    const url = "/api/v1/recipes/create";
+    const { name, ingredients, instructions, image } = this.state;
+
+    if (name.length == 0 || ingredients.length == 0 || instructions.length == 0)
+      return;
+
+    // const body = {
+    // 	name,
+    // 	ingredients,
+    // 	instructions: instructions.replace(/\n/g, "<br> <br>"),
     //  image
-		// };
+    // };
 
     const formData = new FormData();
-      formData.append('recipe[name]', name)
-      formData.append('recipe[ingredients]', ingredients)
-      formData.append('recipe[instructions]', instructions.replace(/\n/g, "<br> <br>"))
-      formData.append('recipe[image]', image)
+    formData.append("recipe[name]", name);
+    formData.append("recipe[ingredients]", ingredients);
+    formData.append(
+      "recipe[instructions]",
+      instructions.replace(/\n/g, "<br> <br>")
+    );
+    formData.append("recipe[image]", image);
 
-
-		const token = document.querySelector('meta[name="csrf-token"]').content;
-		fetch(url, {
-			method: "POST",
-			headers: {
-				"X-CSRF-Token": token
-			},
-			body: formData
-		})
-			.then(response => {
-				if (response.ok) {
-					return response.json();
-				}
-				throw new Error("Network response was not ok.");
-			})
-			.then(response => this.props.history.push(`/recipe/${response.id}`))
-			.catch(error => console.log(error.message));
-	}
-
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": token,
+      },
+      body: formData,
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => this.props.history.push(`/recipe/${response.id}`))
+      .catch((error) => console.log(error.message));
+  }
 
   render() {
     return (
@@ -141,7 +138,5 @@ class NewRecipe extends React.Component {
     );
   }
 }
-
-
 
 export default NewRecipe;

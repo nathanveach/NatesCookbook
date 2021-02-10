@@ -2,13 +2,13 @@
 // like app/views/layouts/application.html.erb. All it does is render <div>Hello React</div> at the bottom
 // of the page.
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from '../components/App';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "../components/App";
 
-document.addEventListener('turbolinks:load', () => {
+document.addEventListener("turbolinks:load", () => {
   ReactDOM.render(
     <App />,
-    document.body.appendChild(document.createElement('div')),
-  )
-})
+    document.body.appendChild(document.createElement("div"))
+  );
+});
