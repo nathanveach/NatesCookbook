@@ -1,4 +1,4 @@
-Nate's Cookbook 🍳
+# Nate's Cookbook 🍳
 
 https://nates-cookbook.herokuapp.com/
 
