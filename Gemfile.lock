@@ -101,7 +101,7 @@ GEM
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
-    jmespath (1.4.0)
+    jmespath (1.6.1)
     jsonapi-renderer (0.2.2)
     listen (3.5.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
